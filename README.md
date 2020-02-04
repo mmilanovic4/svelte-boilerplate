@@ -1,5 +1,5 @@
 <p align="center">
-	<img src="logo.png" alt="Svelte boilerplate">
+	<img src="static/logo.png" alt="Svelte boilerplate">
 </p>
 
 # Overview
