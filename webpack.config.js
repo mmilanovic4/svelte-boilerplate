@@ -12,11 +12,11 @@ module.exports = env => {
 		mode: isProd ? 'production' : 'development',
 		watch: !isProd,
 		entry: {
-			app: ['./src/app.js']
+			app: ['./src/client/app.js']
 		},
 		resolve: {
 			alias: {
-				svelte: path.resolve(__dirname, 'node_modules', 'svelte')
+				Client: path.resolve(__dirname, 'src', 'client')
 			},
 			extensions: ['.mjs', '.js', '.svelte'],
 			mainFields: ['svelte', 'browser', 'module', 'main']
