@@ -1,6 +1,8 @@
 const path = require('path');
 const CopyPlugin = require('copy-webpack-plugin');
+const TerserJSPlugin = require('terser-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
 const mode = process.env.NODE_ENV || 'development';
 const prod = mode === 'production';
@@ -47,6 +49,9 @@ module.exports = (env) => {
 					]
 				}
 			]
+		},
+		optimization: {
+			minimizer: [new TerserJSPlugin({}), new OptimizeCSSAssetsPlugin({})]
 		},
 		plugins: [
 			new MiniCssExtractPlugin({
