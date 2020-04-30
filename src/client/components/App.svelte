@@ -1,9 +1,16 @@
 <script>
 	let count = 0;
+	let name = 'John';
 
 	function handleClick() {
 		count += 1;
 	}
+
+	$: heading = name ? `Hello, ${name}!` : 'Hello!';
+	$: doubled = count * 2;
+	$: {
+		console.log('Count value change:', count);
+	};
 </script>
 
 <style>
@@ -11,36 +18,26 @@
 		padding: 20px;
 	}
 
-	div {
-		display: grid;
-		grid-auto-flow: row;
-		grid-gap: 20px;
-		justify-content: flex-start;
+	p {
+		margin: 10px 0;
 	}
 
 	button {
-		padding: 20px 50px;
-		background-color: #222;
-		border: 2px solid #222;
-		border-radius: 4px;
-		color: #eee;
-		outline: none;
-		transition-property: box-shadow;
-		transition-duration: .3s;
-		transition-timing-function: ease-in-out;
+		padding: 5px 10px;
+		user-select: none;
 	}
 
-	button:hover {
-		box-shadow: 4px 4px 2px #888;
-	}
-
-	button:active {
-		transform: translateY(2px);
+	input {
+		padding: 10px 5px;
+		display: block;
+		margin-top: 10px;
 	}
 </style>
 
 <div>
-	<h1>Hello</h1>
+	<h1>{heading}</h1>
 	<p>Counter: {count}</p>
+	<p>Doubled: {doubled}</p>
 	<button on:click={handleClick}>Click me</button>
+	<input type="text" bind:value={name} />
 </div>
