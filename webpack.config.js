@@ -58,16 +58,18 @@ module.exports = (env) => {
 				filename: '[name].css',
 				chunkFilename: '[id].css'
 			}),
-			new CopyPlugin([
-				{
-					from: path.resolve(__dirname, 'html'),
-					to: path.resolve(__dirname, 'dist')
-				},
-				{
-					from: path.resolve(__dirname, 'static'),
-					to: path.resolve(__dirname, 'dist', 'static')
-				}
-			])
+			new CopyPlugin({
+				patterns: [
+					{
+						from: path.resolve(__dirname, 'html'),
+						to: path.resolve(__dirname, 'dist')
+					},
+					{
+						from: path.resolve(__dirname, 'static'),
+						to: path.resolve(__dirname, 'dist', 'static')
+					}
+				]
+			})
 		],
 		devtool: isProd ? false : 'source-map'
 	};

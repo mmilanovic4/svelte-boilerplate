@@ -9,8 +9,8 @@
 	$: heading = name ? `Hello, ${name}!` : 'Hello!';
 	$: doubled = count * 2;
 	$: {
-		console.log('Count value change:', count);
-	};
+		console.log(`Count value changed: ${count}`);
+	}
 </script>
 
 <style>
