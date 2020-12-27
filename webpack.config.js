@@ -1,27 +1,25 @@
 const path = require('path');
 const CopyPlugin = require('copy-webpack-plugin');
-const TerserJSPlugin = require('terser-webpack-plugin');
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
-
-const mode = process.env.NODE_ENV || 'development';
-const prod = mode === 'production';
+const TerserJSPlugin = require('terser-webpack-plugin');
 
 module.exports = (env) => {
-	const isProd = (env && env.prod) === true;
+	const isDev = env?.dev === true;
 
 	return {
-		mode: isProd ? 'production' : 'development',
-		watch: !isProd,
+		mode: isDev ? 'development' : 'production',
+		watch: isDev,
 		entry: {
 			app: ['./src/client/app.js']
 		},
 		resolve: {
 			alias: {
+				svelte: path.resolve('node_modules', 'svelte'),
 				Client: path.resolve(__dirname, 'src', 'client')
 			},
 			extensions: ['.mjs', '.js', '.svelte'],
-			mainFields: ['svelte', 'browser', 'module', 'main']
+			mainFields: ['svelte', 'browser', 'module', 'main'],
 		},
 		output: {
 			path: path.resolve(__dirname, 'dist', 'assets'),
@@ -32,26 +30,21 @@ module.exports = (env) => {
 		module: {
 			rules: [
 				{
-					test: /\.svelte$/,
-					use: {
-						loader: 'svelte-loader',
-						options: {
-							emitCss: true,
-							hotReload: true
-						}
-					}
+					test: /\.(html|svelte)$/,
+					exclude: /node_modules/,
+					use: 'svelte-loader'
 				},
 				{
 					test: /\.css$/,
 					use: [
-						isProd ? MiniCssExtractPlugin.loader : 'style-loader',
+						isDev ? 'style-loader': MiniCssExtractPlugin.loader,
 						'css-loader'
 					]
 				}
 			]
 		},
 		optimization: {
-			minimizer: [new TerserJSPlugin({}), new OptimizeCSSAssetsPlugin({})]
+			minimizer: [new TerserJSPlugin({}), new CssMinimizerPlugin({})]
 		},
 		plugins: [
 			new MiniCssExtractPlugin({
@@ -71,6 +64,6 @@ module.exports = (env) => {
 				]
 			})
 		],
-		devtool: isProd ? false : 'source-map'
+		devtool: isDev ? 'source-map': false
 	};
 };
