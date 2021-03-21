@@ -28,7 +28,7 @@
 		"svelte": "^3.35.0",
 		"svelte-loader": "^3.0.0",
 		"terser-webpack-plugin": "^5.1.1",
-		"webpack": "^5.26.1",
+		"webpack": "^5.27.1",
 		"webpack-cli": "^4.5.0"
 	}
 }
