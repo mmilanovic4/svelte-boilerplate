@@ -19,7 +19,7 @@ module.exports = (env) => {
 				Client: path.resolve(__dirname, 'src', 'client')
 			},
 			extensions: ['.mjs', '.js', '.svelte'],
-			mainFields: ['svelte', 'browser', 'module', 'main'],
+			mainFields: ['svelte', 'browser', 'module', 'main']
 		},
 		output: {
 			path: path.resolve(__dirname, 'dist', 'assets'),
@@ -37,7 +37,7 @@ module.exports = (env) => {
 				{
 					test: /\.css$/,
 					use: [
-						isDev ? 'style-loader': MiniCssExtractPlugin.loader,
+						isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
 						'css-loader'
 					]
 				}
@@ -64,6 +64,6 @@ module.exports = (env) => {
 				]
 			})
 		],
-		devtool: isDev ? 'source-map': false
+		devtool: isDev ? 'source-map' : false
 	};
 };
