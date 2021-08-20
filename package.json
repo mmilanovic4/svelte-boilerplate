@@ -21,14 +21,14 @@
 		"copy-webpack-plugin": "^9.0.1",
 		"css-loader": "^6.2.0",
 		"css-minimizer-webpack-plugin": "^3.0.2",
-		"mini-css-extract-plugin": "^2.1.0",
+		"mini-css-extract-plugin": "^2.2.0",
 		"prettier": "^2.3.2",
 		"prettier-plugin-svelte": "^2.3.1",
 		"style-loader": "^3.2.1",
-		"svelte": "^3.41.0",
+		"svelte": "^3.42.1",
 		"svelte-loader": "^3.1.2",
 		"terser-webpack-plugin": "^5.1.4",
-		"webpack": "^5.47.1",
-		"webpack-cli": "^4.7.2"
+		"webpack": "^5.51.1",
+		"webpack-cli": "^4.8.0"
 	}
 }
